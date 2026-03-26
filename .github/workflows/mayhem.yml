@@ -50,14 +50,14 @@ jobs:
 #         file: Dockerfile.uninst
 
 #      - name: Start analysis for UNINST
-#        uses: ForAllSecure/mcode-action@v1
+#        uses: ForAllSecure/mcode-action@long-runs
 #        with:
 #          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
 #          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.UNINST }} --duration 600
 #          sarif-output: sarif
 
       - name: Start analysis for AFL
-        uses: ForAllSecure/mcode-action@v1
+        uses: ForAllSecure/mcode-action@long-runs
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
           args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.AFL }} --duration 600
