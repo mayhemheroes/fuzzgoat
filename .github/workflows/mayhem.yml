@@ -57,14 +57,8 @@ jobs:
 #          sarif-output: sarif
 
     - name: Start analysis for AFL
-      uses: ForAllSecure/mcode-action@long-runs
+      uses: forallsecure/mcode-action@long-runs
       with:
         mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
         args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.AFL }} 
           --duration 600
-        sarif-output: sarif
-
-    - name: Upload SARIF file(s)
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: sarif
