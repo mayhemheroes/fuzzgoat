@@ -1,0 +1,14 @@
+# Preserves the legacy `afl-fuzzgoat` Mayhem target. The old integration ran the fuzzgoat CLI on an
+# input file (`/fuzzgoat @@`, AFL); this is a coverage-guided libFuzzer harness over the identical
+# code path (json_parse + json_value_free, where fuzzgoat's deliberate bugs live). libfuzzer: true is
+# mandatory — without it Mayhem starts 0 workers and the run dies.
+project: fuzzgoat
+target: afl-fuzzgoat
+
+cmds:
+  - cmd: /mayhem/fuzz_fuzzgoat
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/afl-fuzzgoat/testsuite
